@@ -1,7 +1,7 @@
 {
   "name": "stable-state",
   "author": "John Ralston",
-  "description": "stable-state is an extremely powerful state managment facility for ReactJS applications. It promotes and facilitates keeping 100% of logic out of React components and custom hooks. This massively reduces application complexity. It also dramatically simplifies unit testing.",
+  "description": "Stable-State is a simple but extremely powerful state management facility for ReactJS applications. It promotes and facilitates keeping 100% of the business logic out of React components and custom hooks. Instead it allows all logic to be in vanella TypeScript/JavaScript files. This massively reduces application complexity. It also dramatically simplifies unit testing.",
   "homepage": "https://github.com/JohnERalston/stable-state",
   "version": "0.0.1",
   "license": "MIT",
