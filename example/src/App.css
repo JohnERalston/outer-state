@@ -1,0 +1,56 @@
+h1,
+h2,
+h3,
+h4,
+h5 {
+  padding: 0 0 5px 0;
+  margin: 0 0 5px 0;
+}
+.app {
+  width: 80%;
+  margin: 2rem auto;
+}
+
+.panels {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.panels .panel {
+  padding: 1rem;
+  border: 2px solid gray;
+  border-radius: 5px;
+}
+
+.panels .panel .header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.errMsg {
+  color: red;
+}
+
+.resultTracker {
+  display: flex;
+  justify-content: space-between;
+  gap: 2%;
+}
+.resultTracker > div {
+  flex-basis: 49%;
+}
+
+.render {
+  opacity: 0;
+  transition: opacity 1s;
+  margin-bottom: 20px;
+  text-align: right;
+  color: green;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.render.visible {
+  opacity: 1;
+}
