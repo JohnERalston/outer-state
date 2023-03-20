@@ -87,7 +87,7 @@ function Parent() {
   );
 }
 
-describe('stable-state', () => {
+describe('outer-state', () => {
   beforeEach(() => {
     jest.resetAllMocks();
     testStore = createStore<TestStore>({

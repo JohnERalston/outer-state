@@ -1,33 +1,39 @@
-# @JohnERalston/stable-state
+# outer-state
 
 ![Coverage lines](https://img.shields.io/badge/license-MIT-green)
 
-![Coverage lines](https://raw.githubusercontent.com/JohnERalston/stable-state/master/media/badge-lines.svg)
-![Coverage functions](https://raw.githubusercontent.com/JohnERalston/stable-state/master/media/badge-functions.svg)
-![Coverage branches](https://raw.githubusercontent.com/JohnERalston/stable-state/master/media/badge-branches.svg)
-![Coverage statements](https://raw.githubusercontent.com/JohnERalston/stable-state/master/media/badge-statements.svg)
+![Coverage lines](https://raw.githubusercontent.com/JohnERalston/outer-state/master/media/badge-lines.svg)
+![Coverage functions](https://raw.githubusercontent.com/JohnERalston/outer-state/master/media/badge-functions.svg)
+![Coverage branches](https://raw.githubusercontent.com/JohnERalston/outer-state/master/media/badge-branches.svg)
+![Coverage statements](https://raw.githubusercontent.com/JohnERalston/outer-state/master/media/badge-statements.svg)
 
-## Stable State
+---
 
-> Write simpler cleaner code faster.
+Write simpler cleaner code faster.
 
-- `Stable State` is an `incredibly simple` yet `incredibly powerful` `state managment` facility for `ReactJS` applications.
-- It has a tiny and simple API with a tiny learning curve.
-- It helps you to keep 100% of your business logic out of React and into vanella TS files.
-- When you do so, complexity is reduced because all need for `useEffect`, `useCallback`, `useMemo`, `useRef` etc. completely dissapear.
-- Stable State also facilitates effortless unit testing.
-- Just `703B`
+---
+
+**outer-state** is a simple yet powerful state management library for ReactJS applications.
+
+- It is 100% boilerplate free. There is zero setup or configuration. The learning curve is tiny. It just works.
+
+- It promotes and facilitates moving all business logic out of React and into vanilla Typescript/Javascript files.
+
+- This massively reduces application complexity.
+- It also massively reduces unit test complexity while promoting increased test quality and coverage.
+
+- outer-state is **enjoyable** to use.
 
 ## Installation
 
 ```bash
-yarn add @JohnERalston/stable-state
+yarn add outer-state
 ```
 
 or
 
 ```bash
-npm install @JohnERalston/stable-state
+npm install outer-state
 ```
 
 ## Basic Usage
@@ -42,7 +48,7 @@ interface TaskTrackerState {
 ### Create a store (multiple stores are strongly encouraged)
 
 ```TypeScript
-@import { createStore } from '@JohnERalston/stable-state';
+@import { createStore } from 'outer-state';
 
 const taskTrackerState = createStore<TaskTrackerState>({
   secondsElapsed: 0,
@@ -52,8 +58,7 @@ const taskTrackerState = createStore<TaskTrackerState>({
 
 ### Update State
 
-> - Updating state can of course be done inside a custom hook or inside a Component. However, with `Stable State` it can also be done outside or React, in fact this is `strongly encouraged`.
-> - Keep 100% of your business logic in vanella TS files outside of React.
+Updating state can be done inside vanilla TypeScript files. This is encouraged.
 
 #### Functional Variant
 
@@ -67,15 +72,15 @@ taskTrackerState.updateStore((store) => ({secondsElapsed: store.secondsElapsed +
 taskTrackerState.updateStore({secondsElapsed: 23));
 ```
 
-### Read State (outside of a Component or custom hook)
+### Read State (outside of a Component or custom-hook)
 
 ```TypeScript
 const {secondsElapsed, itemsComplete} = taskTrackerState.data();
 ```
 
-### Read State (inside a Component or custom hook)
+### Read State (inside a Component or custom-hook)
 
-> Using `useStore()` will cause a rerender when any of the values change
+Using `useStore()` will cause a rerender when any of the values change
 
 ```TypeScript
 const {secondsElapsed, itemsComplete} = taskTrackerState.useStore();
@@ -95,4 +100,9 @@ return (
 
 ## Examples and Demos
 
-- TBD
+- [StackBlitz Collection](https://stackblitz.com/@JohnERalston/collections/outer-state)
+- [Minimal Example](https://stackblitz.com/edit/outer-state-minimal?file=App.tsx,coolStuff.ts)
+- [Complete Example](https://stackblitz.com/edit/outer-state-quiz?file=MathQuiz%2FMathQuiz.tsx)
+- [NextJS Example](https://stackblitz.com/edit/outer-state-nextjs?file=src%2FAppBlogs.js)
+
+To run the example in this repo simply navigate to `/example` and run `yarn install` followed by `yarn start`. The example will then be available at `http://localhost:1234`.

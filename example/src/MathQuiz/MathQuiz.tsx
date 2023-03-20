@@ -4,7 +4,6 @@ import { Contestant } from './Contestant';
 
 import '../App.css';
 import { QuizMaster } from './QuizMaster';
-import { ResultTracker } from './ResultTracker';
 import { CorrectAnswerTracker } from './CorrectAnswerTracker';
 import { IncorrectAnswerTracker } from './IncorrectAnswerTracker';
 

@@ -1,8 +1,8 @@
 {
-  "name": "stable-state",
+  "name": "outer-state",
   "author": "John Ralston",
-  "description": "Stable-State is a simple but extremely powerful state management facility for ReactJS applications. It promotes and facilitates keeping 100% of the business logic out of React components and custom hooks. Instead it allows all logic to be in vanella TypeScript/JavaScript files. This massively reduces application complexity. It also dramatically simplifies unit testing.",
-  "homepage": "https://github.com/JohnERalston/stable-state",
+  "description": "outer-state is a simple but extremely powerful state management facility for ReactJS applications. It promotes and facilitates keeping 100% of the business logic out of React. Instead it allows all logic to be in vanilla TypeScript/JavaScript files. This massively reduces application complexity. It also dramatically simplifies unit testing.",
+  "homepage": "https://github.com/JohnERalston/outer-state",
   "version": "0.0.1",
   "license": "MIT",
   "private": false,
@@ -41,14 +41,14 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "module": "dist/stable-state.esm.js",
+  "module": "dist/outer-state.esm.js",
   "size-limit": [
     {
-      "path": "dist/stable-state.cjs.production.min.js",
+      "path": "dist/outer-state.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/stable-state.esm.js",
+      "path": "dist/outer-state.esm.js",
       "limit": "10 KB"
     }
   ],
@@ -69,8 +69,8 @@
   "keywords": [
     "React",
     "State Manager",
-    "Stable State",
-    "stable-state"
+    "Outer State",
+    "outer-state"
   ],
   "jest": {
     "testPathIgnorePatterns": [
