@@ -87,6 +87,17 @@ function Parent() {
   );
 }
 
+function ParentWithProps(props: { parent: number }) {
+  parentRender();
+  const { parent } = testStore.useStore({ parent: props.parent });
+  return (
+    <div>
+      <div data-testid={testIds.parent}>{parent}</div>
+      <Yellow />
+    </div>
+  );
+}
+
 describe('outer-state', () => {
   beforeEach(() => {
     jest.resetAllMocks();
@@ -232,6 +243,24 @@ describe('outer-state', () => {
     testStore2.updateStore({ green: 1400 });
     expect(testStore.data().green).toBe(140);
     expect(testStore2.data().green).toBe(1400);
+  });
+
+  it('will accept initial props once', () => {
+    const { rerender } = render(<ParentWithProps parent={900} />);
+    expect(getYellowVal()).toBe(defaultYellowVal);
+    expect(getParentVal()).toBe(900);
+    act(() => {
+      testStore.updateStore({ parent: 901, yellow: 902 });
+    });
+    expect(getYellowVal()).toBe(902);
+    expect(getParentVal()).toBe(901);
+    expect(parentRender).toHaveBeenCalledTimes(2);
+
+    //ensure initial values are ignored on subsequent renders
+    rerender(<ParentWithProps parent={900} />);
+    expect(getYellowVal()).toBe(902);
+    expect(getParentVal()).toBe(901);
+    expect(parentRender).toHaveBeenCalledTimes(3);
   });
 
   it('will prevent direct store data mutations', () => {

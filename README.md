@@ -48,7 +48,7 @@ interface TaskTrackerState {
 ### Create a store (multiple stores are strongly encouraged)
 
 ```TypeScript
-@import { createStore } from 'outer-state';
+import { createStore } from 'outer-state';
 
 const taskTrackerState = createStore<TaskTrackerState>({
   secondsElapsed: 0,
@@ -58,24 +58,31 @@ const taskTrackerState = createStore<TaskTrackerState>({
 
 ### Update State
 
-Updating state can be done inside vanilla TypeScript files. This is encouraged.
+Updating state can be done inside vanilla TypeScript files. This is encouraged.  
+Note that `updateStore` accepts partial objects, i.e. you do not have to specify a value for each store property, only those you wish to update.
 
 #### Functional Variant
 
 ```TypeScript
+
 taskTrackerState.updateStore((store) => ({secondsElapsed: store.secondsElapsed + 1}));
+
 ```
 
 #### Object Variant
 
 ```TypeScript
-taskTrackerState.updateStore({secondsElapsed: 23));
+
+taskTrackerState.updateStore({secondsElapsed: 23});
+
 ```
 
 ### Read State (outside of a Component or custom-hook)
 
 ```TypeScript
+
 const {secondsElapsed, itemsComplete} = taskTrackerState.data();
+
 ```
 
 ### Read State (inside a Component or custom-hook)
@@ -96,6 +103,47 @@ return (
     </div>
   </div>
 )
+```
+
+### useStore(initialProps)
+
+`useStore` can accept initial props.
+
+```TypeScript
+const {secondsElapsed, itemsComplete} = taskTrackerState.useStore({secondsElapsed: 23})
+```
+
+This is particularly convenient in for example a NextJS application where props are received during server rendering.
+
+Similar to `useState(defaultValue)` initial props will only be set once. Subsequent rerenders will not update the store again.
+
+Note that the store is a singleton so this applies even when `useStore` is called in multiple components. Once `useStore` is called once, initial values are ignored after that.
+
+```TypeScript
+// A NextJS route
+export default async function Page() {
+  const data = await getData();
+
+  return <MyComp {...data} />
+}
+```
+
+```TypeScript
+export function MyComp(data: TaskTrackerState) {
+  const {secondsElapsed, itemsComplete} = taskTrackerState.useStore(data);
+
+  return (
+    <div>
+      <div>Seconds Elapsed: {secondsElapsed}</div>
+      <div>
+        <h2>itemsComplete</h2>
+        <ul>
+          {itemsComplete.map((item) => <li key={item}>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  )
+}
 ```
 
 ## Examples and Demos
