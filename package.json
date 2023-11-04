@@ -3,7 +3,7 @@
   "author": "John Ralston",
   "description": "outer-state is a simple but extremely powerful state management facility for ReactJS applications. It promotes and facilitates keeping 100% of the business logic out of React. Instead it allows all logic to be in vanilla TypeScript/JavaScript files. This massively reduces application complexity. It also dramatically simplifies unit testing.",
   "homepage": "https://github.com/JohnERalston/outer-state",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "private": false,
   "main": "dist/index.js",
