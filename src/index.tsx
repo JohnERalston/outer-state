@@ -2,6 +2,7 @@ import { useRef, useSyncExternalStore } from 'react';
 import { __createStore } from './store';
 
 export function createStore<Store>(initialValues: Store) {
+  let initialPropsSet = false;
   let store = { ...initialValues };
 
   const { setUpdated, register, unregister } = __createStore();
@@ -22,9 +23,14 @@ export function createStore<Store>(initialValues: Store) {
     }
   }
 
-  function useStore(): Store {
+  function useStore(initialProps?: Partial<Store> | null | undefined): Store {
     const update = useRef(() => {});
     const keySet = useRef(new Set<string>());
+
+    if (initialProps && !initialPropsSet) {
+      setStoreValues(initialProps);
+    }
+    initialPropsSet = true;
 
     const receiver = (onStoreChange: () => void) => {
       unregister(update.current);
@@ -51,6 +57,10 @@ export function createStore<Store>(initialValues: Store) {
   }
 
   function doUpdate(partial: Partial<Store>) {
+    setUpdated(setStoreValues(partial));
+  }
+
+  function setStoreValues(partial: Partial<Store>) {
     const keys = Object.keys(partial);
     keys.forEach(key => {
       if (!(store as any).hasOwnProperty([key])) {
@@ -59,6 +69,7 @@ export function createStore<Store>(initialValues: Store) {
       (store as any)[key] = (partial as any)[key];
     });
     store = { ...store };
-    setUpdated(keys);
+
+    return keys;
   }
 }
