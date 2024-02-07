@@ -63,9 +63,6 @@ export function createStore<Store>(initialValues: Store) {
   function setStoreValues(partial: Partial<Store>) {
     const keys = Object.keys(partial);
     keys.forEach(key => {
-      if (!(store as any).hasOwnProperty([key])) {
-        return;
-      }
       (store as any)[key] = (partial as any)[key];
     });
     store = { ...store };
