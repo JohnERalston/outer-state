@@ -6,6 +6,7 @@ interface TestStore {
   parent: number;
   yellow: number;
   green: number;
+  optional?: number;
 }
 
 const [defaultParentVal, defaultYellowVal, defaultGreenVal] = [0, 100, 200];
@@ -187,20 +188,17 @@ describe('outer-state', () => {
     expect(greenRender).toHaveBeenCalledTimes(2);
   });
 
-  it('will ignore unmatched update property keys', async () => {
-    render(<Parent />);
+  it('will update optional properties not set in createStore', async () => {
+    expect(testStore.data().optional).toBeUndefined();
+    expect(testStore.data().green).not.toBe(-100);
     act(() => {
       testStore.updateStore({
-        parent: 66,
-        yellow: 77,
-        green: 88,
-        //@ts-ignore
-        unmatched: 99,
+        optional: 2,
+        green: -100,
       });
     });
-    await waitFor(() => expect(getYellowVal()).toBe(77));
-    expect(getParentVal()).toBe(66);
-    expect(getGreenVal()).toBe(88);
+    expect(testStore.data().optional).toBe(2);
+    expect(testStore.data().green).toBe(-100);
   });
 
   it('will update parent', async () => {
