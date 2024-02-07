@@ -190,12 +190,15 @@ describe('outer-state', () => {
 
   it('will update optional properties not set in createStore', async () => {
     expect(testStore.data().optional).toBeUndefined();
+    expect(testStore.data().green).not.toBe(-100);
     act(() => {
       testStore.updateStore({
         optional: 2,
+        green: -100,
       });
     });
     expect(testStore.data().optional).toBe(2);
+    expect(testStore.data().green).toBe(-100);
   });
 
   it('will update parent', async () => {
